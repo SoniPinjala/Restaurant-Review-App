@@ -39,7 +39,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 	display: block;
 }
 #maincontent {
-  /* background-color: #f3f3f3; */
+  background-color: #f3f3f3;
   min-height: 100%;
 }
 #footer {
@@ -278,6 +278,10 @@ nav h1 a {
 #reviews-list li p {
   margin: 0 0 10px;
 }
+#restaurant-hours {
+  width: 100%;
+  overflow-x: auto;
+}
 #restaurant-hours td {
   color: #666;
 }
@@ -286,7 +290,7 @@ nav h1 a {
 
 @media screen and (max-width: 450px) {
   .container {
-    margin: 30px 5px 60px;
+    margin: 30px 5px 0;
   }
   .filter-options select {
     margin: 10px 5px;
@@ -295,6 +299,75 @@ nav h1 a {
 
 @media screen and (min-width: 451px) {
   .container {
-    margin: 30px 15px 60px;
+    margin: 30px 15px 0px;
   }  
+}
+
+@media screen and (max-width: 801px) {
+  /* Restaurant Detail Page for mobil */
+  #breadcrumb {
+    width: 100%;
+    padding: 10px 5px 16px;
+  }
+
+  .inside #map-container {
+    height: 400px;
+    position: relative;
+    /* right: 0; */
+    top: 121px;
+    width: 100%;
+  }
+
+  #restaurant-container, #reviews-container {
+    width: 100%;
+    padding: 0;
+    margin: 10px 0 10px;
+    position: relative;
+    top: 121px;
+  }
+
+  #restaurant-img, #restaurant-cuisine {
+    width: 100%;
+    border-radius: 13px 0 13px 0;
+  }
+
+  #reviews-list li {
+    width: 100%;
+    border: 0;
+    padding: 0;
+    border-radius: 13px 0 13px 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #reviews-list li p:nth-child(1) {
+    padding: 5px;
+    background-color: #333;
+    color: white;
+    width: 61%;
+  }
+  #reviews-list li p:nth-child(2) {
+    padding: 5px;
+    /* width: 22%; */
+    background-color: #333;
+    color: #ccc;
+  }
+  #reviews-list li p:nth-child(3) {
+    background-color: #f58500;
+    width: 70px;
+    color: white;
+    padding: 4px;
+    margin-left: 5px; 
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  #reviews-list li p:nth-child(4) {
+    margin: 0 5px 20px 5px;
+  }
+
+  .inside #footer {
+    position: relative;
+    width: 100%;
+    top: 121px;
+    padding: 25px 0 25px;
+  }
 }

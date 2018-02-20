@@ -1,6 +1,45 @@
 let restaurant;
 var map;
 
+// if (!navigator.serviceWorker) return;
+navigator.serviceWorker.register('./sw.js').then(function(reg) {
+  console.log('Service worker registered.');
+
+  if (!navigator.serviceWorker.controller) {
+    return;
+  }
+
+  if (reg.waiting) {
+    navigator.serviceWorker.controller.postMessage({action: 'skipWaiting'});
+  }
+
+  if (reg.installing) {
+    navigator.serviceWorker.addEventListener('statechange', function() {
+      if (navigator.serviceWorker.controller.state == 'installed') {
+        navigator.serviceWorker.controller.postMessage({action: 'skipWaiting'});
+      }
+    });
+  }
+
+  reg.addEventListener('updatefound', function() {
+    navigator.serviceWorker.addEventListener('statechange', function() {
+      if (navigator.serviceWorker.controller.state == 'installed') {
+        navigator.serviceWorker.controller.postMessage({action: 'skipWaiting'});
+      }
+    });
+  });
+
+}).catch(function() {
+  console.log('Service worker registration failed');
+});  
+
+var refreshing;
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+  if (refreshing) return;
+  window.location.reload();
+  refreshing = true;
+})
+
 /**
  * Initialize Google map, called from HTML.
  */
@@ -58,6 +97,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.setAttribute('alt', restaurant.name);
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
