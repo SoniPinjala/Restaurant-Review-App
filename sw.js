@@ -35,8 +35,23 @@ self.addEventListener('fetch', function(event){
     // console.log(event.request);
     event.respondWith(
         caches.match(event.request).then(function(response) {
-            if (response) return response;
-            return fetch(event.request)
+            if (response) {
+                console.log('Found ', event.request.url, ' in cache');
+                return response;
+            }
+            console.log('Network request for ', event.request.url);
+            return fetch(event.request).then(function(response) {
+                if (response.status === 404) {
+                    console.log(response.status);
+                    return;
+                }
+                return caches.open(staticCacheName).then(function(cache) {
+                    return response;
+                })
+            })
+        }).catch(function(error) {
+            console.log('Error, ', error);
+            return;
         })
     );
 });
