@@ -100,6 +100,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.setAttribute('alt', restaurant.name);
+  image.setAttribute('alt', `An image of ${restaurant.name}`);
   image.setAttribute('tabindex', 0);
 
   const cuisine = document.getElementById('restaurant-cuisine');
@@ -195,6 +196,7 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
   li.innerHTML = restaurant.name;
+  li.setAttribute('aria-current', 'page');
   breadcrumb.appendChild(li);
 }
 
