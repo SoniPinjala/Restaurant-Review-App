@@ -17,7 +17,18 @@ Stage 1 focuses on
 5. Start local server:
 	- For Python 2.x: `python -m SimpleHTTPServer 8000`
 	- For Python 3.x: `python3 -m http.server 8000`
-6. Visit [http://localhost:8000](http://localhost:8000)
+6. Provide data from node server (see below)
+7. Visit [http://localhost:8000](http://localhost:8000)
+
+## Data from node server
+
+```
+$ git clone https://github.com/udacity/mws-restaurant-stage-2.git
+$ cd mws-restaurant-stage-2
+$ node server
+```
+
+**This server must be up and running parallel to the Python server.**
 
 ## Licence
 
