@@ -1,4 +1,4 @@
-# Restaurant Review App—Stage 1
+# Restaurant Review App
 
 This app  is created as part of the Udacity Nanodegree "Mobile Web Specialist". The project is divided into three stages. This repo represents stage 1.
 
@@ -7,6 +7,12 @@ Stage 1 focuses on
 - accessibility
 - responsiveness
 - offline first
+
+Stage 2 focuses on
+
+- performance
+- accessibility
+- offline first with IDB
 
 ## Installation and run locally
 
