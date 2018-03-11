@@ -21,7 +21,7 @@ ul {
   padding: 0;
 }
 a {
-	color: orange;
+	color: #6b3b04;
 	text-decoration: none;
 }
 a:hover, a:focus {
@@ -44,12 +44,16 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 }
 #footer {
   background-color: #444;
-  color: #aaa;
+  color: #fff;
   font-size: 8pt;
   letter-spacing: 1px;
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
+}
+#footer a {
+  color: #fff;
+	text-decoration: underline;
 }
 /* ====================== Navigation ====================== */
 nav {
@@ -133,23 +137,17 @@ nav h1 a {
 
 /* ====================== Restaurant Listing ====================== */
 #restaurants-list {
-  /* background-color: #f3f3f3; */
   list-style: outside none none;
   margin: 0;
   padding: 0;
-  /* text-align: center; */
   display: flex; 
   flex-wrap: wrap;
 }
 #restaurants-list li {
   background-color: #fff;
-  /* border: 2px solid #ccc; */
   font-family: Arial,sans-serif;
   margin: 15px;
-  /* min-height: 380px; */
-  /* padding: 0 30px 25px; */
   text-align: left;
-  /* width: 330px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #restaurants-list .restaurant-img {
@@ -157,11 +155,10 @@ nav h1 a {
   display: block;
   margin: 0;
   max-width: 100%;
-  /* min-height: 248px; */
   min-width: 100%;
 }
 #restaurants-list li h2 {
-  color: #f18200;
+  color: #6b3b04;
   font-family: Arial,sans-serif;
   font-size: 14pt;
   font-weight: 200;
@@ -177,8 +174,7 @@ nav h1 a {
   font-size: 11pt;
 }
 #restaurants-list li a {
-  background-color: #f18200;
-  /* border-bottom: 3px solid #eee; */
+  background-color: #6b3b04;
   color: #fff;
   display: inline-block;
   font-size: 10pt;
@@ -216,7 +212,7 @@ nav h1 a {
   width: calc(50% - 50px);
 }
 #restaurant-name {
-  color: #f18200;
+  color: #6b3b04;
   font-family: Arial,sans-serif;
   font-size: 20pt;
   font-weight: 200;
@@ -256,7 +252,7 @@ nav h1 a {
   padding: 30px 40px 80px;
 }
 #reviews-container h2 {
-  color: #f58500;
+  color: #6b3b04;
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
@@ -268,7 +264,6 @@ nav h1 a {
 }
 #reviews-list li {
   background-color: #fff;
-  /* border: 2px solid #f3f3f3; */
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
@@ -276,7 +271,6 @@ nav h1 a {
   overflow: hidden;
   padding: 0;
   position: relative;
-  /* width: 85%; */
   border-radius: 13px 0 13px 0
 }
 #reviews-list li p {
@@ -290,13 +284,12 @@ nav h1 a {
 }
 #reviews-list li p:nth-child(2) {
   padding: 5px;
-  /* width: 22%; */
   background-color: #333;
   color: #ccc;
   width: 120px;
 }
 #reviews-list li p:nth-child(3) {
-  background-color: #f58500;
+  background-color: #6b3b04;
   width: 70px;
   color: white;
   padding: 4px;
@@ -363,7 +356,6 @@ nav h1 a {
   .inside #map-container {
     height: 400px;
     position: relative;
-    /* right: 0; */
     top: 121px;
     width: 100%;
   }
