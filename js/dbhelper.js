@@ -13,6 +13,37 @@ class DBHelper {
   }
 
   /**
+   * IndexedDB Promised
+   */
+  static get dbPromise() {
+    return DBHelper.openDatabase();
+  }
+  static openDatabase() {
+    if (!navigator.serviceWorker) {
+      return Promise.resolve();
+    }
+
+    return idb.open('restaurants', 1, function(upgradeDb) {
+      upgradeDb.createObjectStore('all-restaurants', {keyPath: 'id'});
+    });
+
+  }
+
+  /**
+   * Get all restaurants from IndexedDB first
+   */
+  static getRestaurantsfromIDB(callback) {    
+    DBHelper.dbPromise.then(db => {
+      if (!db) callback(null, null);
+      const tx = db.transaction('all-restaurants');
+      const store = tx.objectStore('all-restaurants');
+      store.getAll().then(results => {
+        callback(null, results);
+      });  
+    });
+  }
+
+  /**
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
@@ -21,6 +52,16 @@ class DBHelper {
     xhr.onload = () => {
       if (xhr.status === 200) { // Got a success response from server!        
         const restaurants = JSON.parse(xhr.responseText);
+
+        this.dbPromise.then(db => {
+          if (!db) return;
+          const tx = db.transaction('all-restaurants', 'readwrite');
+          const store = tx.objectStore('all-restaurants');
+          restaurants.forEach(restaurant => {
+            store.put(restaurant);
+          })
+        });
+
         callback(null, restaurants);
       } else { // Oops!. Got an error from server.
         const error = (`Request failed. Returned status of ${xhr.status}`);

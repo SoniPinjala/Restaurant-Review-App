@@ -10,8 +10,8 @@ self.addEventListener('install', function(event) {
                 'js/dbhelper.js',
                 'js/main.js',
                 'js/restaurant_info.js',
+                'node_modules/idb/lib/idb.js',
                 'img/',
-                'data/restaurants.json',
             ]);
         })
     );
@@ -57,6 +57,9 @@ self.addEventListener('fetch', function(event){
 });
 
 self.addEventListener('message', function(event) {
+    console.log(event);
+    
+    // var messages = JSON.parse(event.data);
     if (event.data.action === 'skipWaiting') {
        self.skipWaiting();
     }
