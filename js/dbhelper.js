@@ -80,7 +80,6 @@ class DBHelper {
       if (error) {
         callback(error, null);
       } else {
-        console.log(restaurants);
         const restaurant = restaurants.find(r => r.id == id);
         if (restaurant) { // Got the restaurant
           callback(null, restaurant);
@@ -184,6 +183,7 @@ class DBHelper {
    * Restaurant page URL.
    */
   static urlForRestaurant(restaurant) {
+
     return (`./restaurant.html?id=${restaurant.id}`);
   }
 
@@ -191,7 +191,11 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`/img/${restaurant.photograph}.jpg`);
+    if (restaurant.photograph) {
+      return (`/img/${restaurant.photograph}.webp`);
+    } else {
+      return (`/img/default.webp`);
+    }
   }
 
   /**
