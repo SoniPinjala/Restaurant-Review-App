@@ -8,20 +8,9 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  getRestaurantsFromIDB();
   fetchNeighborhoods();
   fetchCuisines();
 });
-
-/**
- * Get initial restaurants from IndexedDB
- */
-getRestaurantsFromIDB = () => {
-  DBHelper.getRestaurantsfromIDB((error, restaurants) => {
-    self.restaurants = restaurants;
-    fillRestaurantsHTML();
-  }) 
-}
 
 /**
  * Fetch all neighborhoods and set their HTML.
