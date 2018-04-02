@@ -148,37 +148,3 @@ nav h1 a {
     width: calc(20% - 30px);
   }
 }
-
-@media screen and (max-width: 801px) {
-  /* Restaurant Detail Page for mobil */
-  #breadcrumb {
-    width: 100%;
-    padding: 10px 5px 16px;
-  }
-
-  .inside #map-container {
-    height: 400px;
-    position: relative;
-    top: 121px;
-    width: 100%;
-  }
-
-  #restaurant-container, #reviews-container {
-    width: 100%;
-    padding: 0;
-    margin: 10px 0 10px;
-    position: relative;
-    top: 121px;
-  }
-
-  #reviews-list li {
-    padding: 0;
-  }
-
-  .inside #footer {
-    position: relative;
-    width: 100%;
-    top: 121px;
-    padding: 25px 0 25px;
-  }
-}

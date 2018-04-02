@@ -2,17 +2,24 @@
 
 This app  is created as part of the Udacity Nanodegree "Mobile Web Specialist". The project is divided into three stages.
 
-Stage 1 focuses on 
+#### Stage 1 focuses on 
 
 - accessibility
 - responsiveness
 - offline first
 
-Stage 2 focuses on
+#### Stage 2 focuses on
 
 - performance
 - accessibility
 - offline first with IDB
+
+
+#### Stage 3 focuses on 
+
+- POST requests with offline-first approach
+- a form to submit data
+- performance ([Lighthouse](https://developers.google.com/web/tools/lighthouse/) performance >90)
 
 ## Installation and run locally
 
@@ -29,8 +36,10 @@ Stage 2 focuses on
 ## Data from node server
 
 ```
-$ git clone https://github.com/udacity/mws-restaurant-stage-2.git
-$ cd mws-restaurant-stage-2
+$ git clone https://github.com/udacity/mws-restaurant-stage-3.git
+$ cd mws-restaurant-stage-3
+$ npm i
+$ npm i sails -g
 $ node server
 ```
 
