@@ -31,7 +31,7 @@ class DBHelper {
 	 * Fetch all restaurants.
 	 */
 	static fetchRestaurants(callback) {
-		DBHelper.dbPromise.then(db => {
+		DBHelper.dbPromise.then(db => {			
 			if (!db) {
 				// Fetch from network
 				let xhr = new XMLHttpRequest();
@@ -98,6 +98,7 @@ class DBHelper {
 	 * Fetch a restaurant by its ID.
 	 */
 	static fetchRestaurantById(id, callback) {
+		//TODO: Refactor, only get a single restaurant by ID from network
 		// fetch all restaurants with proper error handling.
 		DBHelper.fetchRestaurants((error, restaurants) => {
 			if (error) {
@@ -342,6 +343,49 @@ class DBHelper {
 				console.log('Review stored offline in IDB');
 			});
 			return;
+		});
+	}
+
+	static submitOfflineReviews() {
+		DBHelper.dbPromise.then(db => {
+			const tx = db.transaction('offline-reviews');
+			const store = tx.objectStore('offline-reviews');
+			store.getAll().then(offlineReviews => {
+				console.log(offlineReviews);
+				offlineReviews.forEach(review => {
+					DBHelper.submitReview(review);
+				})
+				DBHelper.clearOfflineReviews();
+			})
+		})
+	}
+
+	static clearOfflineReviews() {
+		DBHelper.dbPromise.then(db => {
+			const tx = db.transaction('offline-reviews', 'readwrite');
+			const store = tx.objectStore('offline-reviews').clear();
+		})
+		return;
+	}
+
+	static toggleFavorite(restaurantId, isFavorite) {
+		fetch(`${DBHelper.DATABASE_URL}/restaurants/${restaurantId}/?is_favorite=${isFavorite}`, {
+			method: 'PUT'
+		})
+		.then(response => {
+			response.json()
+			.then(data => {
+				this.dbPromise.then(db => {
+					if (!db) return;
+					const tx = db.transaction('all-restaurants', 'readwrite');
+					const store = tx.objectStore('all-restaurants');
+					store.put(data)
+				});
+				return data;
+			})
+		})
+		.catch( error => {
+			console.log(error);
 		});
 	}
 }

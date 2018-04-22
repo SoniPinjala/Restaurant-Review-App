@@ -59,6 +59,12 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 	name.innerHTML = restaurant.name;
 	name.setAttribute('tabindex', 0);
 
+	const favCheck = document.getElementById('favCheck');
+	favCheck.checked = restaurant.is_favorite;
+	favCheck.addEventListener('change', event => {
+		DBHelper.toggleFavorite(restaurant.id, event.target.checked);
+	});
+
 	const address = document.getElementById('restaurant-address');
 	address.innerHTML = restaurant.address;
 	address.setAttribute('tabindex', 0);
@@ -109,7 +115,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
  */
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 	const container = document.getElementById('reviews-container');
-	const title = document.createElement('h2');
+	const title = document.createElement('h3');
 	title.innerHTML = 'Reviews';
 	title.setAttribute('tabindex', 0);
 	container.prepend(title);

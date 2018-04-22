@@ -15,6 +15,17 @@ self.addEventListener('install', function(event) {
 				'js/sw_registration.js',
 				'node_modules/idb/lib/idb.js',
 				'img/',
+				'img/1.webp',
+				'img/2.webp',
+				'img/3.webp',
+				'img/4.webp',
+				'img/5.webp',
+				'img/6.webp',
+				'img/7.webp',
+				'img/8.webp',
+				'img/9.webp',
+				'img/10.webp',
+				'img/default.webp',
 			]);
 		})
 	);
@@ -82,7 +93,6 @@ self.addEventListener('sync', function (event) {
 			request.onsuccess = function () {
 				// 2. POST offline reviews to network
 				for (let i = 0; i < request.result.length; i++) {
-					console.log(request.result[i]);
 					fetch(`http://localhost:1337/reviews/`, {
 						body: JSON.stringify(request.result[i]),
 						cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -99,7 +109,6 @@ self.addEventListener('sync', function (event) {
 						return response.json();
 					})
 					.then(data => {
-						console.log(data);
 						let tx = db.transaction('all-reviews', 'readwrite');
 						let store = tx.objectStore('all-reviews');
 						let request = store.add(data);
