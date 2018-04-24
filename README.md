@@ -21,6 +21,16 @@ This app  is created as part of the Udacity Nanodegree "Mobile Web Specialist". 
 - a form to submit data
 - performance ([Lighthouse](https://developers.google.com/web/tools/lighthouse/) performance >90)
 
+## Features
+
+- View all restaurants
+- View restaurants for a specific district or cuisine
+- View details to a restaurant like opening hours and reviews
+- Write reviews for a restaurant
+- Mark a restaurant as favorite
+- View already loaded pages also in offline mode
+- Accessibility: Use the app with screen reader or keyboard-only
+
 ## Installation and run locally
 
 1. First this repository.
