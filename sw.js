@@ -14,7 +14,6 @@ self.addEventListener('install', function(event) {
 				'js/restaurant_info.js',
 				'js/sw_registration.js',
 				'node_modules/idb/lib/idb.js',
-				'img/',
 				'img/1.webp',
 				'img/2.webp',
 				'img/3.webp',
@@ -50,18 +49,18 @@ self.addEventListener('fetch', (event) => {
 	event.respondWith(
 		caches.match(event.request).then(response => {
 			if (response) {
-				console.log('Found ', event.request.url, ' in cache');
+				// console.log('Found in cache:', event.request.url);
 				return response;
 			}
-			console.log('Network request for ', event.request.url);
+			// console.log('Network request for ', event.request.url);
 			return fetch(event.request).then(networkResponse => {
 				if (networkResponse.status === 404) {
-					console.log(networkResponse.status);
+					// console.log(networkResponse.status);
 					return;
 				}
 				return caches.open(staticCacheName).then(cache => {
 					cache.put(event.request.url, networkResponse.clone());
-					console.log('Fetched and cached', event.request.url);
+					// console.log('Fetched and cached', event.request.url);
 					return networkResponse;
 				})
 			})
